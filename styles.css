@@ -1,0 +1,37 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0 3em;
+}
+.container {
+    border: 2px solid black;
+    width: 18em;
+    height: 30em;
+    text-align: center;
+    margin: 0 2em;
+}
+
+.pick-screen {
+    border: 2px solid black;
+    padding: 8px;
+    margin: 8px;
+    min-width: 10em;
+    height: 10em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pick-screen p {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.score {
+    text-align: center;
+    width: 200px;
+    height: 400px;
+}

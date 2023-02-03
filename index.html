@@ -4,9 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Rock, Paper, Scissors!</title>
 </head>
 <body>
+    <div class="player-container container">
+        <h2 class="title">You</h2>
+        <div class="pick-screen">
+            <p class="player-pick-screen"></p>
+        </div>
+
+        <h3>Pick: </h3>
+
+        <button class="rock-button">Rock</button>
+        <button class="paper-button">Paper</button>
+        <button class="scissors-button">Scissors</button>
+    </div>
+
+    <div class="score">
+        <p>Score</p>
+        <p><span id="player-score"></span> : <span id="computer-score"></span></p>
+        <p class="round-result"></p>
+        <p class="match-result"></p>
+        <button id="play-again-button" style="display: none;">Play Again?</button>
+        
+    </div>
+
+
+    <div class="computer-container container">
+        <h2 class="title">BOT</h2>
+        <div class="pick-screen">
+            <p class="computer-pick-screen"></p>
+        </div>
+    </div>
     <script src="./rps-script.js"></script>
 </body>
 </html>

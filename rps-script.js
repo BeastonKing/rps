@@ -1,5 +1,21 @@
 let playerScore = 0;
 let computerScore = 0;
+const rockButton = document.querySelector('.rock-button');
+const paperButton = document.querySelector('.paper-button');
+const scissorsButton = document.querySelector('.scissors-button');
+const playerPickScreen = document.querySelector('.player-pick-screen');
+const computerPickScreen = document.querySelector('.computer-pick-screen');
+const playerScoreDisplay = document.querySelector('#player-score');
+const computerScoreDisplay = document.querySelector('#computer-score');
+const roundResult = document.querySelector('.round-result');
+const scoreContainer = document.querySelector('.score');
+const playAgainButton = document.querySelector('#play-again-button');
+const matchResult = document.querySelector('.match-result');
+playAgainButton.style.display = 'none';
+playerScoreDisplay.textContent = playerScore;
+computerScoreDisplay.textContent = computerScore;
+
+
 
 const getComputerChoice = () => {
     const rand = Math.floor(Math.random() * 3) + 1;
@@ -52,31 +68,60 @@ const playRound = (playerSelection, computerSelection) => {
     }
 }
 
-const game = () => {
-    const validInputs = ['rock', 'paper', 'scissors'];
-    for (let i = 0; i < 5; i++) {
-        console.log(`Round ${i + 1}`)
-        let p = prompt();
+const game = (e) => {
 
-        if (!p) return 'You quit the game.';
-    
-        while (!validInputs.includes(p.trim().toLowerCase())) {
-            console.log('Input invalid. Try again with these values (rock, paper, scissors).')
-            p = prompt();
-            if (!p) return 'You quit the game.';
-            continue;
+    const playerSelection = e.target.textContent;
+    const computerSelection = getComputerChoice();
+    playerPickScreen.textContent = playerSelection;
+    computerPickScreen.textContent = computerSelection;
+
+    roundResult.textContent = playRound(playerSelection.toLowerCase(), computerSelection);
+
+    playerScoreDisplay.textContent = playerScore;
+    computerScoreDisplay.textContent = computerScore;
+
+    if (playerScore === 5 || computerScore === 5) {
+        playAgainButton.style.display = 'inline-block';
+        rockButton.disabled = true;
+        paperButton.disabled = true;
+        scissorsButton.disabled = true;
+        if (playerScore > computerScore) {
+            matchResult.textContent = 'You Won!';
+        } else {
+            matchResult.textContent = 'You Lost!';
         }
+        
+        scoreContainer.appendChild(playAgainButton);
 
-        const c = getComputerChoice();
-        console.log(playRound(p.trim(),c));
-        console.log(`Player score: ${playerScore}`)
-        console.log(`Computer score: ${computerScore}`)
-        console.log('==============================')
     }
-
-    if (playerScore > computerScore) return 'You Won!!!'
-    else if (playerScore === computerScore) return 'Draw!!!'
-    else return 'You Lost!!!'
 }
 
-console.log(game())
+const reset = () => {
+    playerScore = 0;
+    computerScore = 0;
+    playerScoreDisplay.textContent = '0';
+    computerScoreDisplay.textContent = '0';
+    playAgainButton.style.display = 'none';
+    matchResult.textContent = '';
+    roundResult.textContent = '';
+    rockButton.disabled = false;
+    paperButton.disabled = false;
+    scissorsButton.disabled = false;
+    playerPickScreen.textContent = '';
+    computerPickScreen.textContent = '';
+}
+
+// Rock Button
+rockButton.addEventListener('click', game);
+
+// Paper Button
+paperButton.addEventListener('click', game);
+
+// Scissors Button
+scissorsButton.addEventListener('click', game);
+
+// Play Again Button
+playAgainButton.addEventListener('click', reset);
+
+
+// console.log(game())
